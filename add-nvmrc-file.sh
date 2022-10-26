@@ -10,7 +10,7 @@ echo "-> Writing file"
 echo $NODE_V > .nvmrc
 
 # create git commit
-git add package.json
+git add .nvmrc
 git commit -m "chore: add only-allow" --quiet &> /dev/null
 
 echo "...done!"
