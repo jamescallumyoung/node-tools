@@ -23,7 +23,7 @@ echo $NODE_V > .nvmrc
 if $GIT; then
   echo "-> Committing file to Git"
   git add .nvmrc
-  git commit -m "chore: add only-allow" --quiet &> /dev/null
+  git commit -m "chore: add nvmrc file" --quiet &> /dev/null
 fi
 
 echo "...done!"
