@@ -103,6 +103,7 @@ echo \
 }' > tsconfig.json # overwrite config so there's no comments
 $ENABLE_GIT && git add tsconfig.json
 
+npm pkg set "type"="module"
 npm pkg set "scripts.build"="tsc"
 npm pkg set "exports.§.import"="./dist/esm/main.js"
 npm pkg set "exports.§.types"="./dist/types/main.d.ts"
