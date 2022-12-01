@@ -69,7 +69,7 @@ yarn add -D typescript
 git add .pnp.cjs .yarn/cache package.json yarn.lock
 
 yarn run tsc --init
-echo "{
+echo '{
         "compilerOptions": {
           "incremental": true,
 
@@ -94,7 +94,7 @@ echo "{
         "include": [
           "./src/**/*.ts"
         ]
-      }" > tsconfig.json # overwrite config so there's no comments
+      }' > tsconfig.json # overwrite config so there's no comments
 git add tsconfig.json
 
 npm pkg set "scripts.build"="tsc"
@@ -110,14 +110,14 @@ git add ./src
 git commit -m "chore: typescript init"
 
 # step six: add commonjs build
-echo "{
+echo '{
         "compilerOptions": {
           "target": "ES2019",
           "module": "CommonJS",
           "outDir": "./dist/cjs"
         },
         "extends": "./tsconfig.json"
-      }" > tsconfig-cjs.json
+      }' > tsconfig-cjs.json
 git add tsconfig-cjs.json
 
 npm pkg set "scripts.build-esm"="tsc -p ./tsconfig.json"
