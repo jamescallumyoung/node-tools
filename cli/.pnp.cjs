@@ -28,9 +28,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@types/prompts", "npm:2.4.1"],\
+            ["prompts", "npm:2.4.2"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@types/node", [\
+        ["npm:18.11.10", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.11.10-cca0d46cb2-0f60cb090b.zip/node_modules/@types/node/",\
+          "packageDependencies": [\
+            ["@types/node", "npm:18.11.10"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/prompts", [\
+        ["npm:2.4.1", {\
+          "packageLocation": "./.yarn/cache/@types-prompts-npm-2.4.1-8f09fc5256-05cc828c35.zip/node_modules/@types/prompts/",\
+          "packageDependencies": [\
+            ["@types/prompts", "npm:2.4.1"],\
+            ["@types/node", "npm:18.11.10"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["cli", [\
@@ -38,9 +59,40 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["cli", "workspace:."],\
+            ["@types/prompts", "npm:2.4.1"],\
+            ["prompts", "npm:2.4.2"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["kleur", [\
+        ["npm:3.0.3", {\
+          "packageLocation": "./.yarn/cache/kleur-npm-3.0.3-f6f53649a4-df82cd1e17.zip/node_modules/kleur/",\
+          "packageDependencies": [\
+            ["kleur", "npm:3.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["prompts", [\
+        ["npm:2.4.2", {\
+          "packageLocation": "./.yarn/cache/prompts-npm-2.4.2-f5d25d5eea-d8fd1fe638.zip/node_modules/prompts/",\
+          "packageDependencies": [\
+            ["prompts", "npm:2.4.2"],\
+            ["kleur", "npm:3.0.3"],\
+            ["sisteransi", "npm:1.0.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["sisteransi", [\
+        ["npm:1.0.5", {\
+          "packageLocation": "./.yarn/cache/sisteransi-npm-1.0.5-af60cc0cfa-aba6438f46.zip/node_modules/sisteransi/",\
+          "packageDependencies": [\
+            ["sisteransi", "npm:1.0.5"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["typescript", [\
