@@ -5,19 +5,23 @@
 # vars
 NODE_LTS_V_NAME="lts/hydrogen"  # alias for the latest lts version
 NODE_LTS_MINIMUM="18.0.0"       # minimum version in the latest lts range
+ENABLE_GIT=false                # bool (true|false); should git be run in each step?
 
 # step zero: git init
-git init
+$ENABLE_GIT && git init
 
 # step one: node
 echo $NODE_LTS_V_NAME > .nvmrc
 nvm use
-git add .nvmrc
-git commit -m "chore: add .nvmrc"
+$ENABLE_GIT && git add .nvmrc
+$ENABLE_GIT && git commit -m "chore: add .nvmrc"
 
 # step two: yarn
 yarn init -2
-git add .editorconfig .gitignore .yarnrc.yml README.md package.json yarn.lock .yarn/releases
+if ! $ENABLE_GIT ; then
+  rm -rf .git
+fi
+$ENABLE_GIT && git add .editorconfig .gitignore .yarnrc.yml README.md package.json yarn.lock .yarn/releases
 
 # no pnp
 #.pnp.*
@@ -38,35 +42,35 @@ git add .editorconfig .gitignore .yarnrc.yml README.md package.json yarn.lock .y
  #!.yarn/versions
 
 yarn set version stable
-git add .yarn/releases
+$ENABLE_GIT && git add .yarn/releases
 
 yarn install
-git add .pnp.cjs yarn.lock
+$ENABLE_GIT && git add .pnp.cjs yarn.lock
 
 yarn plugin import typescript
-git add .yarnrc.yml .yarn/plugins
+$ENABLE_GIT && git add .yarnrc.yml .yarn/plugins
 
 echo "/.yarn/releases/** binary
       /.yarn/plugins/** binary" > .gitattributes
-git add .gitattributes
+$ENABLE_GIT && git add .gitattributes
 
-git commit -m "chore: yarn init modern"
+$ENABLE_GIT && git commit -m "chore: yarn init modern"
 
 # step three: set minimum versions
 npm pkg set "engines.node"=">=$NODE_LTS_MINIMUM"
 npm pkg set "engines.npm"="dont-use-npm"
 npm pkg set "engines.yarn"=">=$(yarn -v)"
-git add package.json
-git commit -m "chore: set node engine versions"
+$ENABLE_GIT && git add package.json
+$ENABLE_GIT && git commit -m "chore: set node engine versions"
 
 # step four: add only-allow
 npm pkg set "scripts.preinstall"="npx only-allow yarn"
-git add package.json
-git commit -m "chore: add only-allow"
+$ENABLE_GIT && git add package.json
+$ENABLE_GIT && git commit -m "chore: add only-allow"
 
 # step five: typescript
 yarn add -D typescript
-git add .pnp.cjs .yarn/cache package.json yarn.lock
+$ENABLE_GIT && git add .pnp.cjs .yarn/cache package.json yarn.lock
 
 yarn run tsc --init
 echo '{
@@ -95,19 +99,19 @@ echo '{
           "./src/**/*.ts"
         ]
       }' > tsconfig.json # overwrite config so there's no comments
-git add tsconfig.json
+$ENABLE_GIT && git add tsconfig.json
 
 npm pkg set "scripts.build"="tsc"
 npm pkg set "exports.§.import"="./dist/esm/main.js"
 npm pkg set "exports.§.types"="./dist/types/main.d.ts"
 sed 's/§/\./g' package.json
-git add package.json
+$ENABLE_GIT && git add package.json
 
 mkdir src
 echo "console.log(0)" > ./src/main.ts
-git add ./src
+$ENABLE_GIT && git add ./src
 
-git commit -m "chore: typescript init"
+$ENABLE_GIT && git commit -m "chore: typescript init"
 
 # step six: add commonjs build
 echo '{
@@ -123,5 +127,5 @@ git add tsconfig-cjs.json
 npm pkg set "scripts.build-esm"="tsc -p ./tsconfig.json"
 npm pkg set "scripts.build-cjs"="tsc -p ./tsconfig-cjs.json"
 npm pkg set "scripts.build-cjs"="yarn run build-esm && yarn run build-cjs"
-git add package.json
-git commit -m "chore: add typescript cjs config"
+$ENABLE_GIT && git add package.json
+$ENABLE_GIT && git commit -m "chore: add typescript cjs config"
