@@ -1,6 +1,7 @@
 {
   "name": "cli",
   "packageManager": "yarn@3.3.0",
+  "type": "module",
   "engines": {
     "node": ">=18.0.0",
     "npm": "dont-use-npm",
@@ -9,8 +10,8 @@
   "scripts": {
     "preinstall": "npx only-allow yarn",
     "build": "yarn run build-esm && yarn run build-cjs",
-    "build-esm": "tsc -p ./tsconfig.json",
-    "build-cjs": "tsc -p ./tsconfig-cjs.json"
+    "build-esm": "yarn run tsc -p ./tsconfig.json",
+    "build-cjs": "yarn run tsc -p ./tsconfig-cjs.json"
   },
   "dependencies": {
     "prompts": "^2.4.2"
@@ -22,6 +23,7 @@
   "exports": {
     ".": {
       "import": "./dist/esm/main.js",
+      "require": "./dist/cjs/main.js",
       "types": "./dist/types/main.d.ts"
     }
   }
