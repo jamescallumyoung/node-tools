@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+
+    "target": "ES2021",
+
+    "module": "NodeNext",
+    "rootDir": "./src",
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/types",
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}
