@@ -129,6 +129,6 @@ git add tsconfig-cjs.json
 
 npm pkg set "scripts.build-esm"="tsc -p ./tsconfig.json"
 npm pkg set "scripts.build-cjs"="tsc -p ./tsconfig-cjs.json"
-npm pkg set "scripts.build-cjs"="yarn run build-esm && yarn run build-cjs"
+npm pkg set "scripts.build"="yarn run build-esm && yarn run build-cjs"
 $ENABLE_GIT && git add package.json
 $ENABLE_GIT && git commit -m "chore: add typescript cjs config"

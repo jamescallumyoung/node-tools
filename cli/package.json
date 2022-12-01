@@ -8,9 +8,9 @@
   },
   "scripts": {
     "preinstall": "npx only-allow yarn",
-    "build": "tsc",
+    "build": "yarn run build-esm && yarn run build-cjs",
     "build-esm": "tsc -p ./tsconfig.json",
-    "build-cjs": "yarn run build-esm && yarn run build-cjs"
+    "build-cjs": "tsc -p ./tsconfig-cjs.json"
   },
   "devDependencies": {
     "typescript": "^4.9.3"
