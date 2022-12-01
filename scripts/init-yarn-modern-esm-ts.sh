@@ -118,12 +118,12 @@ $ENABLE_GIT && git commit -m "chore: typescript init"
 # step six: add commonjs build
 echo \
 '{
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2019",
     "module": "CommonJS",
     "outDir": "./dist/cjs"
-  },
-  "extends": "./tsconfig.json"
+  }
 }' > tsconfig-cjs.json
 git add tsconfig-cjs.json
 
