@@ -106,7 +106,7 @@ $ENABLE_GIT && git add tsconfig.json
 npm pkg set "scripts.build"="tsc"
 npm pkg set "exports.§.import"="./dist/esm/main.js"
 npm pkg set "exports.§.types"="./dist/types/main.d.ts"
-sed 's/§/\./g' package.json
+sed 's/§/\./g' package.json | tee package.json
 $ENABLE_GIT && git add package.json
 
 mkdir src
