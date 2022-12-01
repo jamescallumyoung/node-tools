@@ -50,8 +50,9 @@ $ENABLE_GIT && git add .pnp.cjs yarn.lock
 yarn plugin import typescript
 $ENABLE_GIT && git add .yarnrc.yml .yarn/plugins
 
-echo "/.yarn/releases/** binary
-      /.yarn/plugins/** binary" > .gitattributes
+echo \
+"/.yarn/releases/** binary
+/.yarn/plugins/** binary" > .gitattributes
 $ENABLE_GIT && git add .gitattributes
 
 $ENABLE_GIT && git commit -m "chore: yarn init modern"
@@ -73,32 +74,33 @@ yarn add -D typescript
 $ENABLE_GIT && git add .pnp.cjs .yarn/cache package.json yarn.lock
 
 yarn run tsc --init
-echo '{
-        "compilerOptions": {
-          "incremental": true,
+echo \
+'{
+  "compilerOptions": {
+    "incremental": true,
 
-          "target": "ES2021",
+    "target": "ES2021",
 
-          "module": "NodeNext",
-          "rootDir": "./src",
+    "module": "NodeNext",
+    "rootDir": "./src",
 
-          "declaration": true,
-          "declarationMap": true,
-          "sourceMap": true,
-          "outDir": "./dist/esm",
-          "declarationDir": "./dist/types",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/types",
 
-          "esModuleInterop": true,
-          "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
 
-          "strict": true,
+    "strict": true,
 
-          "skipLibCheck": true
-        },
-        "include": [
-          "./src/**/*.ts"
-        ]
-      }' > tsconfig.json # overwrite config so there's no comments
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}' > tsconfig.json # overwrite config so there's no comments
 $ENABLE_GIT && git add tsconfig.json
 
 npm pkg set "scripts.build"="tsc"
@@ -114,14 +116,15 @@ $ENABLE_GIT && git add ./src
 $ENABLE_GIT && git commit -m "chore: typescript init"
 
 # step six: add commonjs build
-echo '{
-        "compilerOptions": {
-          "target": "ES2019",
-          "module": "CommonJS",
-          "outDir": "./dist/cjs"
-        },
-        "extends": "./tsconfig.json"
-      }' > tsconfig-cjs.json
+echo \
+'{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "CommonJS",
+    "outDir": "./dist/cjs"
+  },
+  "extends": "./tsconfig.json"
+}' > tsconfig-cjs.json
 git add tsconfig-cjs.json
 
 npm pkg set "scripts.build-esm"="tsc -p ./tsconfig.json"
