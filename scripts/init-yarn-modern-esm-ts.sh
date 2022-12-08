@@ -126,11 +126,12 @@ echo \
     "outDir": "./dist/cjs"
   }
 }' > tsconfig-cjs.json
-git add tsconfig-cjs.json
+$ENABLE_GIT && git add tsconfig-cjs.json
 
 npm pkg set "scripts.build-esm"="yarn run tsc -p ./tsconfig.json"
 npm pkg set "scripts.build-cjs"="yarn run tsc -p ./tsconfig-cjs.json"
 npm pkg set "scripts.build"="yarn run build-esm && yarn run build-cjs"
+sed 's/"\."/"§"/g' package.json | tee package.json
 npm pkg set "exports.§.require"="./dist/cjs/main.js"
 sed 's/§/\./g' package.json | tee package.json
 $ENABLE_GIT && git add package.json
